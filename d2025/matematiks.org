@@ -1,42 +1,238 @@
 #+AUTHOR: Serob Tigranyan
-#+TITLE: Mathematical Analysis
+#+TITLE: Matematiks
 #+LATEX_HEADER: \usepackage{mathptmx}  % Times font
 #+LATEX_HEADER: \usepackage{helvet}   % Helvetica font
 #+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault} % Sans-serif as default
 #+LATEX_HEADER: \usepackage{titlesec}
 #+LATEX_HEADER: \usepackage{lmodern}
+#+LATEX_HEADER: \usepackage{tikz}
 
 \newpage
 
-* Analsys of the function
-We're given the function:
+* Analysis of the Function
+Given the function:
 \[
-f(x) = \frac{x^2+3x-1}{3-2x}
+f(x)=\frac{x^2+3x-1}{3-2x}
 \]
 
-And we need to analyse and graph the function by following the steps below:
-1. Domain of the Function
-2. Limit at the Domain's Edges
-3. Interceptions at $X$ and $Y$ axies
-4. Monotonic Intervals
-5. Critical Points and Local Extrema
-6. Function values at Extrema
-7. Concavity and Inflection Points
-8. Asymptotes
-9. Graphing the Function
+Analyze it and graph the function by following the steps below:
+1. Finding the Doamin of the Function
+2. Limits at the Boundaries of the Domain
+3. Interceptions with Coordinate Axies
+4. Critical Points and Monotonic Intervals
+5. Local Extrema and values at Extrema
+7. Inflection Points and Concavity
+8. Identification of Asymptotes Using Limits
+9. Function graph
 
-\newpage
-
-* Domain of the function
-Since we have fractional function, the domain of the function is all real numbers except when the denominator is zero:
+* Finding the Domain of the Function
+We'll first need to find the domain of the function as this step is essential when observing the function at bounderies which it is undefined.
+Because our function is rational, the domain of the function would be the following:
 \[
 3-2x \neq 0 \rightarrow x \neq \frac{3}{2}
 \]
 
-* Limit at the Domain's Edges
-* Interceptions at X and Y axies
-* Monotonic Intervals
-* Critical Points and Local Extrema
-* Concavity and Inflection Points
-* Asymptotes
-* Graphing the Function
+Therefore the domain of $f(x)$ is:
+\[
+\left(-\infty, \frac{3}{2} \right) \cup \left( \frac{3}{2}, +\infty \right)
+\]
+
+\newpage
+* Limits at the Boundaries of the Domain
+We examine the behaviour near the point where the function is undefined ($x=\frac{3}{2}$) from both sides.
+
+As $x \to \frac{3}{2}^+$:
+\[
+\lim_{x \to -\infty} \frac{x^2+3x-1}{3-2x} = \lim_{x \to -\infty} \frac{x \left( x + \frac{3}{x} - \frac{1}{x^2} \right)}{ x \left( \frac{3}{x} - 2 \right) } = \frac{-\infty}{-2} = +\infty
+\]
+
+As $x \to \frac{3}{2}^-$:
+\[
+\lim_{x \to +\infty} \frac{x^2+3x-1}{3-2x} = \frac{ \infty }{-2} = -\infty
+\]
+
+\[
+\lim_{x\to\frac{3}{2}^+} \frac{x^2+3x-1}{3-2x} = \lim_{x\to\frac{3}{2}^+} x^2+3x+1 \lim_{x\to\frac{3}{2}^+} \frac{1}{3-2x} = \frac{31}{4} \cdot \frac{1}{3-3} = +\infty
+\]
+
+\[
+\lim_{x\to\frac{3}{2}^-} \frac{x^2+3x-1}{3-2x} = = -\infty
+\]
+
+* Interceptions with Coordinate Axies
+We find where the function intercepts at $x$ and $y$ axies by plugging zero for each axies.
+
+X Interception:
+\[
+x^2+3x-1=0
+\]
+
+Using the quadratic formula we get:
+\[
+x = \frac{-3 \pm \sqrt{13}}{2}
+\]
+
+Y Interception:
+\[
+(0)^2+3(0)-1 = -1
+\]
+
+\newpage
+* Critical Points and Monotonic Intervals
+Critical points occur in a function where the derivative is zero. To find the critical points we first differentiate the function and then solve for zero.
+
+Differentiate:
+\[
+f'(x) = \frac{d}{dx} \left( \frac{x^2+3x-1}{3-2x} \right) = \frac{-2x^2+6x+7}{(3-2x)^2}
+\]
+
+Solve for zero:
+\[
+\frac{-2x^2+6x+7}{(3-2x)^2} = 0 \rightarrow 2x^2-6x-7=0 \rightarrow x_1 = \frac{6 \pm \sqrt{94}}{4} \rightarrow x_2 = \frac{3 \pm \sqrt{23}}{2}
+\]
+
+We have two critical points:
+\[
+x_1 = \frac{3 + \sqrt{23}}{2}
+\]
+\[
+x_2 = \frac{3 - \sqrt{23}}{2}
+\]
+
+* Local Extrema and values at Extrema
+To find the monotonic intervals we first compute the derivate then find the signs on the interval.
+
+** Monotonic Intervals
+Monotonicity:
+\[
+f'(x) > 0 \ \ increasing 
+\]
+\[
+f'(x) < 0 \ \ decreasing
+\]
+
+Pick something lesser than $x_1$, bigger than $x_1$ and finally bigger than $x_3$ and also plug in the values that are undefined as well:
+\newpage
+\[
+f'(-1) = -0.04 \ \ decreasing 
+\]
+\[
+f'(\frac{3}{2}) = 1.5 \ \ increasing
+\]
+\[
+f'(2) = 11 \ \ increasing
+\]
+\[
+f'(4) = -0.04 \ \ decreasing
+\]
+
+Therefore our monotonic intervals are:
+\[
+Increasing: \left( \frac{3-\sqrt{23}}{2} ; \frac{3+\sqrt{23}}{2} \right)
+\]
+\[
+Decreasing: \left( -\infty ; \frac{3 - \sqrt{23}}{2} \right) \cup \left( \frac{3 + \sqrt{23}}{2} ; \infty \right)
+\]
+
+** Local Extrema
+To find the local extrema of the function we take the interval from before and determine whether the function at the critical point is a minimum or a maximum.
+[[file:./skarmbild.png]]
+
+If the function is decreasing before critical point $x$ and increasing afterwards then its a local minimum, otherwise its a local maximum.
+
+Therefore:
+\[
+x_{min} = \frac{3-\sqrt{23}}{2}
+\]
+\[
+x_{max} = \frac{3+\sqrt{23}}{2}
+\]
+
+** Evaluation of Function Values at Local Extrema
+We simply plug in the extrema values into the function to get their values:
+\[
+f(\frac{3-\sqrt{23}}{2}) = \frac{1}{2} \left( \sqrt{23} - 6 \right)
+\]
+\[
+f(\frac{3+\sqrt{23}}{2}) = -3-\frac{\sqrt{23}}{2}
+\]
+
+* Inflection Points and Concavity
+To find the Inflection Points and Concavity, we'll first need to find the second derivative of the function:
+\[
+f'(x) = \frac{-2x^2+6x+7}{(3-2x)^2}
+\]
+\[
+f''(x) = \frac{d}{dx} \left( \frac{-2x^2+6x+7}{(3-2x)^2} \right) = \frac{\left( -2x^2+6x+7 \right)' \left( 3-2x \right)^2 - \left( -2x^2+6x+7 \right) \left(\left( 3 - 2x\right)^2\right)'}{\left(3-2x\right)^4}
+\]
+\[
+f''(x) = \frac{46}{(3-2x)^3}
+\]
+
+Afterwards in our Interval we plug in Critical Values inside the second derivative from which we can tell the following:
+- $f''(x) > 0$: Concave up
+- $f''(x) < 0$: Concave down
+
+After plugging our Critical Values we get:
+\[
+f''\left(\frac{3+\sqrt{23}}{2}\right) \approx -0.41
+\]
+\[
+f''\left(\frac{3-\sqrt{23}}{2}\right) \approx 0.41
+\]
+
+\newpage
+Therefore:
+#+ATTR_LATEX: :width 0.3\textwidth
+[[file:./skarmbild2.png]]
+
+To find the Inflection Points we zero the second derivative and solve:
+\[
+\frac{46}{(3-2x)^3} = 0
+\]
+
+But as we can see this equation has no Real solution therefore another possible candidate is $\frac{3}{2}$ but our function here is undefined therefore *our function has no Inflection Points.*
+
+* Identification of Asymptotes using Limits
+** Vertical Asympotote
+Vertical asymptotes occur near unbounded $x$ values for $f(x)$, to find whether or not an unbounded $x$ for the function is an asymptote, we simply take the limit from both sides of $x$.
+
+$x$ from right:
+\[
+\lim_{x\to\frac{3}{2}^+} \frac{x^2+3x-1}{3-2x} = +\infty
+\]
+
+$x$ from left:
+\[
+\lim_{x\to\frac{3}{2}^-} \frac{x^2+3x-1}{3-2x} = -\infty
+\]
+
+** Slant Asymptote and Horizontal Asymptote
+Slant Asymptotes occur when finding $k$, $b$ and plugging them in the linear equation below:
+\[
+y=kx+b
+\]
+
+We determine whether or not we have a Slant or Horizontal Asymptotes by looking at each coefficient:
+- $k$ and $b$ are both constants: We have a Slant Asymptote
+- $b$ is a constant and $k$ is zero: We have a Horizontal Asymptote
+
+Now we find $k$ by taking the limit as $x \rightarrow \pm \infty$:
+\[
+k=\lim_{x\to\pm\infty} \frac{f(x)}{x} \rightarrow \lim_{x\to\pm\infty} \frac{x^2+3x-1}{x(3-2x)} = \frac{1+0-0}{0-2} = \frac{1}{-2}
+\]
+
+Now we find $b$ by plugging in $k$ and taking the limit as $x \rightarrow \pm \infty$:
+\[
+b=\lim_{x\to\pm\infty} f(x)-kx \rightarrow \lim_{x\to\pm\infty} \left( \frac{x^2+3x-1}{3-2x} + \frac{x}{2} \right) = \frac{9-0}{0-4} = -\frac{9}{4}
+\]
+
+And finally we get the linear function below:
+\[
+y=kx+b \rightarrow y=\frac{x}{-2}-\frac{9}{4}
+\]
+
+As we can see, neither $k$ or $b$ are zero therefore we have a Slant Asymptote.
+
+* Function graph
+[[file:./holy_balony.png]]
