@@ -88,7 +88,7 @@ public:
         // Very inefficient for real-life physics applications.
         return std::sqrt((m_x * m_x) + (m_y * m_y) + (m_z * m_z));
     }
-    [[nodiscard]] constexpr vec3f normalise() const noexcept {
+    [[nodiscard]] constexpr vec3f normalize() const noexcept {
         const auto mag = magnitude();
         auto       res = *this;
         res.m_x /= mag, res.m_y /= mag, res.m_z /= mag;
@@ -124,9 +124,9 @@ public:
     }
 };
 
-constexpr auto FRAME_INTERVAL = 1.0f / 5.0f; // hz
+constexpr auto FRAME_INTERVAL = 1.0f / 360.0f; // hz
 constexpr auto BALL_COUNT     = 2;
-constexpr auto SIM_DURATION   = 999; // seconds
+constexpr auto SIM_DURATION   = 5; // seconds
 
 static auto                         s_run = true;
 static std::array<ball, BALL_COUNT> s_entities{
@@ -144,40 +144,44 @@ static auto s_time_passed = .0f;
 void update(const f32 dt) {
     using clock = std::chrono::steady_clock;
 
-    static auto t1          = clock::now();
+    static auto t1 = clock::now();
 
-    int i = 0;
     for (auto& e : s_entities) {
         // Apply the velocity and take delta time account.
-        e.pos += e.vel * dt;
+        e.pos += e.vel;// * dt;
     }
 
-    for (auto& a : s_entities) {
-        // Collision detection and resolution
-        for (auto& b : s_entities) {
-                // Check if the two balls are possibly in a collision.
-            if (a != b) {
-                if ((a.pos - b.pos).magnitude() <= a.radii + b.radii) {
-                    // Collision normal (x axies).
-                    const auto norm  = (a.pos - b.pos).normalise();
-                    const auto r_vel = a.vel - b.vel;
+    for (usize i = 0; i < s_entities.size(); ++i) {
+        for (usize j = i + 1; j < s_entities.size(); ++j) {
+            auto& a = s_entities[i];
+            auto& b = s_entities[j];
 
-                    // Project relative velocity onto the normalised Collision
-                    // axies (normalised to not interferre with our velocity).
-                    const auto r_vel_n = norm.dot(r_vel);
+            if ((a.pos - b.pos).magnitude() <= a.radii + b.radii) {
+                auto n = (b.pos - a.pos).normalize();
 
-                }
-                else {
-                }
+                auto v1n = a.vel.dot(n);
+                auto v2n = b.vel.dot(n);
+
+                auto m1 = a.mass, m2 = b.mass;
+
+                // New normal velocities
+                auto v1n_prime = (v1n * (m1 - m2) + 2 * m2 * v2n) / (m1 + m2);
+                auto v2n_prime = (v2n * (m2 - m1) + 2 * m1 * v1n) / (m1 + m2);
+
+                // Tangential component remains unchanged
+                auto v1t = a.vel - n * v1n;
+                auto v2t = b.vel - n * v2n;
+
+                a.vel = v1t + n * v1n_prime;
+                b.vel = v2t + n * v2n_prime;
             }
-
         }
     }
 
     {
         const auto dur = std::chrono::duration<f32>(clock::now() - t1).count();
-        //std::cout << dur << "s" << std::endl;
-        
+        // std::cout << dur << "s" << std::endl;
+
         std::cout << "tps: " << 1.0f / dur << "hz" << std::endl;
         std::cout << "time: " << s_time_passed << "s" << std::endl;
         for (usize i = 0; i < s_entities.size(); ++i) {
@@ -213,7 +217,7 @@ i32 main() {
         lag += local_frame_time;
 
         // update
-        for (; lag >= FRAME_INTERVAL; lag -= FRAME_INTERVAL) {
+        for (; lag >= FRAME_INTERVAL && s_run; lag -= FRAME_INTERVAL) {
             update(FRAME_INTERVAL);
         }
 

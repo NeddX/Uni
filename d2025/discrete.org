@@ -1,0 +1,232 @@
+#+AUTHOR: Serob Tigranyan
+#+TITLE: Discrete Mathematics
+#+LATEX_HEADER: \usepackage{mathptmx}  % Times font
+#+LATEX_HEADER: \usepackage{helvet}   % Helvetica font
+#+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault} % Sans-serif as default
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \usepackage{lmodern}
+#+LATEX_HEADER: \usepackage{amsmath}
+
+\newpage
+
+* Task 1
+We are given:
+\[
+A = \{ 1, 2, 3, 4, 5 \}
+\]
+
+And a relation matrix $a$ where $R \subseteq A \times A$:
+#+BEGIN_EXPORT latex
+\[
+a =
+ \begin{bmatrix}
+ 1 & 0 & 0 & 1 & 0 \\
+ 0 & 0 & 1 & 0 & 1 \\
+ 1 & 0 & 1 & 0 & 0 \\
+ 1 & 0 & 0 & 1 & 0 \\
+ 0 & 1 & 0 & 0 & 0
+ \end{bmatrix}
+\]
+#+END_EXPORT
+
+We need to find whether relation $a$ is *reflextive*, *symmtetric* and *transitive*, if not then find their *closures* respectively.
+
+** Reflexivity
+A relation is *reflexive* if every element is related to itself, e.g., $a_{ii} = 1$ for all $i$.
+
+This means that the diagonal elements are all 1's, but it's not in our case therefore relation $a$ is *not reflexive*.
+
+*** Reflexive Closure
+*Reflexive closure* for relation $a$ would be $a_{ref}$ where all the diagonal elements are 1's:
+
+#+BEGIN_EXPORT latex
+\[
+a_{ref} =
+ \begin{bmatrix}
+ 1 & 0 & 0 & 1 & 0 \\
+ 0 & 1 & 1 & 0 & 1 \\
+ 1 & 0 & 1 & 0 & 0 \\
+ 1 & 0 & 0 & 1 & 0 \\
+ 0 & 1 & 0 & 0 & 1
+ \end{bmatrix}
+\]
+#+END_EXPORT
+
+** Symmetry
+A relation is *symmetric* if $a_{ij} = a_{ji}$. \\
+We can check this by transposing our relation matrix and if $T(a) = a$ then the relation is *symmetric*:
+#+BEGIN_EXPORT latex
+\[
+T(a) =
+ \begin{bmatrix}
+ 1 & 0 & 1 & 1 & 0 \\
+ 0 & 0 & 0 & 0 & 1 \\
+ 0 & 1 & 1 & 0 & 0 \\
+ 1 & 0 & 0 & 1 & 0 \\
+ 0 & 1 & 0 & 0 & 0
+ \end{bmatrix}
+\]
+#+END_EXPORT
+
+We can clearly observe that the transposed matrix differs from the original relation matrix therefore:
+\[
+T(a) \neq a
+\]
+
+So the relation $a$ is *not symmetric*.
+
+*** Symmetric Closure
+The *symmetric closure* for relation $a$ would be $a_{sym}$ where every $a_{ij} = a_{ji} = 1$:
+
+#+BEGIN_EXPORT latex
+\[
+a_{sym} =
+ \begin{bmatrix}
+ 1 & 0 & 0 & 1 & 0 \\
+ 0 & 1 & 1 & 0 & 1 \\
+ 1 & 0 & 1 & 0 & 0 \\
+ 1 & 0 & 0 & 1 & 0 \\
+ 0 & 1 & 0 & 0 & 1
+ \end{bmatrix}
+\]
+#+END_EXPORT
+** Transitivity
+A relation is *transitive* if whenever $(i,j) \in R$ and $(j, k) \in R$, then $(i,k) \in R$. \\
+We can easily check by taking the *boolean* square of the relation matrix $a$:
+#+BEGIN_EXPORT latex
+\[
+a^2 =
+ \begin{bmatrix}
+ 1 & 0 & 0 & 1 & 0 \\
+ 1 & 1 & 1 & 0 & 0 \\
+ 1 & 0 & 1 & 1 & 0 \\
+ 1 & 0 & 0 & 1 & 0 \\
+ 0 & 0 & 1 & 0 & 1
+ \end{bmatrix}
+\]
+#+END_EXPORT
+
+If all the 1's in $a^2$ exists in $a$ then the relation is *transitive*, but this is not the case for us therefore the relation $a$ is *not transitive*.
+*** Transitive Closure
+We can use Warshall's algorithm to find the transitive closure for relation $a$.
+After applying Warshall's algorithm to our initial relation matrix we get:
+#+BEGIN_EXPORT latex
+\[
+a_{trans} =
+\begin{bmatrix}
+1 & 0 & 0 & 1 & 0 \\
+1 & 1 & 1 & 1 & 1 \\
+1 & 0 & 1 & 1 & 0 \\
+1 & 0 & 0 & 1 & 0 \\
+1 & 1 & 1 & 1 & 1
+\end{bmatrix}
+\]
+#+END_EXPORT
+
+\newpage
+* Task 2
+We are asked to find how many integers below or equal to 1000 are divisible by 8, 22 or 32.
+
+Let:
+- $A$: Numbers divisible by 8
+- $B$: Numbers divisible by 22
+- $C$: Numbers divisible by 32
+
+** Calculate the numbers that 1000 is divisible by each number
+We start by finding how many nymbers up to 1000 are divisible by: \\
+
+ $8$: Divide 1000 by 8:
+   \[
+   \left\lfloor \frac{1000}{8} \right\rfloor = 125
+   \]
+
+ $22$: Divide 1000 by 22:
+   \[
+   \left\lfloor \frac{1000}{22} \right\rfloor = 45
+   \]
+
+ $32$: Divide 1000 by 32:
+   \[
+   \left\lfloor \frac{1000}{22} \right\rfloor = 31
+   \]
+
+** Substract overlap
+Then we will need to subtract the overlap numbers counted twice. \\
+Some numbers are disible by both 8 and 22, or 8 and 32, etc. \\
+We subtract them so we don't count them twice. \\
+
+To do this, we find how many numbers are divisible by both pairs:
+- 8 and 22:
+  Find LCM (Least Common Multiple) of 8 and 22
+  \[
+  LCM(8, 22) = 88
+  \]
+  \[
+  \left\lfloor \frac{1000}{88} \right\rfloor = 11
+  \]
+
+- 8 and 32:
+  Find LCM of 8 and 32
+  \[
+  LCM(8, 32) = 32
+  \]
+  \[
+  \left\lfloor \frac{1000}{32} \right\rfloor = 31
+  \]
+
+- 22 and 32:
+  Find LCM of 22 and 32
+  \[
+  LCM(22, 32) = 352
+  \]
+  \[
+  \left\lfloor \frac{1000}{352} \right\rfloor = 2
+  \]
+** Add back numbers counted 3 times
+Some numbers are divisible by all three so we add these back because we subtracted them earlier.
+- $LCM(8, 22, 32) = 352$
+\[
+\left\lfloor \frac{1000}{352} \right\rfloor = 2
+\]
+
+** Putting it all together using Inclusion-Exclusion Formula
+The *Inclusion-Exclusion* Formula states the following:
+\[
+\left|A \cup B \cup C \right| = \left|A\right| + \left|B\right| + \left|C \right| - \left|A \cap B \right| - \left|A \cap C \right| - \left|B \cap C \right| + \left|A \cap B \cap C \right|
+\]
+
+Plug in our values:
+- $A = 125$
+- $B = 45$
+- $C = 31$
+- $AB = 11$
+- $AC = 31$
+- $BC = 2$
+- $ABC = 2$
+
+Therefore:
+\[
+125 + 45 + 31 - 11 - 31 - 2 + 2 = 159
+\]
+
+\newpage
+* Task 3
+We are given graphs $H$ and $G$:
+#+ATTR_LATEX: :width 0.6\textwidth
+[[./grappherr.png]]
+
+We must determine if the given graphs are *isomorphic*.
+First we recall the definition of two isomorphic graphs: \\
+
+Let $G_1 = (V_1,E_1)$ & $G_2 = (V_2, E_2)$ be two simple graphs where:
+- $V_1, V_2$ are the sets of vertices
+- $E_1, E_2$ are the sets of edges
+
+Then $G_1$ & $G_2$ are *isomorphic* if there exists a bijective function $\varphi : V_1 \rightarrow V_2$ such that:
+| $\{u, v\} \in E_1$, if any only if $\{\varphi\left(u\right), \varphi\left(v\right)\} \in E_2$
+
+In simpiler terms $G$ & $H$ are *isomorphic* if there exists a bijection function $\varphi$ that directly maps $G$'s vertices to $H$'s vertices (and vice-versa) and that each degree of both vertices match. \\
+
+In our case it is visually apparent that these two graphs are not *isomorphic*.
+More specificaally, the degrees of $u_3, v_3$ do not match, $u_3$ has degree of two while $v_3$ has degree of just one. \\
+Therefore these two graphis are not *isomorphic*.

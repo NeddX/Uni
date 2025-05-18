@@ -1,0 +1,42 @@
+#+AUTHOR: Serob Tigranyan
+#+TITLE: Mathematical Analysis
+#+LATEX_HEADER: \usepackage{mathptmx}  % Times font
+#+LATEX_HEADER: \usepackage{helvet}   % Helvetica font
+#+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault} % Sans-serif as default
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \usepackage{lmodern}
+
+\newpage
+
+* Analsys of the function
+We're given the function:
+\[
+f(x) = \frac{x^2+3x-1}{3-2x}
+\]
+
+And we need to analyse and graph the function by following the steps below:
+1. Domain of the Function
+2. Limit at the Domain's Edges
+3. Interceptions at $X$ and $Y$ axies
+4. Monotonic Intervals
+5. Critical Points and Local Extrema
+6. Function values at Extrema
+7. Concavity and Inflection Points
+8. Asymptotes
+9. Graphing the Function
+
+\newpage
+
+* Domain of the function
+Since we have fractional function, the domain of the function is all real numbers except when the denominator is zero:
+\[
+3-2x \neq 0 \rightarrow x \neq \frac{3}{2}
+\]
+
+* Limit at the Domain's Edges
+* Interceptions at X and Y axies
+* Monotonic Intervals
+* Critical Points and Local Extrema
+* Concavity and Inflection Points
+* Asymptotes
+* Graphing the Function

@@ -1,0 +1,88 @@
+% Created 2025-05-18 Sun 20:12
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{mathptmx}  % Times font
+\usepackage{helvet}   % Helvetica font
+\renewcommand{\familydefault}{\sfdefault} % Sans-serif as default
+\usepackage{titlesec}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\author{Serob Tigranyan}
+\date{\today}
+\title{Linear Algebra}
+\hypersetup{
+ pdfauthor={Serob Tigranyan},
+ pdftitle={Linear Algebra},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.4 (Org mode 9.7.11)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Task 1}
+\label{sec:org11759b6}
+Given the following basis vectors:
+\[
+e_1=(1,1,1)
+\]
+\[
+e_2=(1,1,2)
+\]
+\[
+e_3=(1,-1,1)
+\]
+
+And vector x:
+\[
+x=(6,9,14)
+\]
+
+Check if the basis vectors are linearly independent by placing each vector as a column in matrix and calculating the \textbf{rank}:
+\[
+ A =
+ \begin{bmatrix}
+ 1 & 1 & 1 \\
+ 1 & 1 & -1 \\
+ 1 & 2 & 1
+ \end{bmatrix}
+\]
+
+Calculate rank:
+\[
+\Delta_1 = 1 \cdot 1 \cdot 1 + 1 \cdot (-1) \cdot 1 + 1 \cdot 1 \cdot 2 - 1 \cdot 1 \cdot 1 - 1 \cdot 1 \cdot 1 - 1 \cdot (-1) \cdot 2 = 2
+\]
+\[
+rank(A) = 3
+\]
+
+Because the \textbf{rank} is 3, the same amount as the length of the vectors, this means that the basis vectors are linearly independent.
+
+\(x\) expressed as a vector inside our basis:
+\[
+x = c_1 e_1 + c_2 e_2 + c_3 e_3
+\]
+
+\[
+ \left\{
+ \begin{align}
+ c_1 + c_2 + c_3 = x_1 \\
+ c_1 + c_2 - c_3 = x_2 \\
+ c_1 + 2c_2 + c_3 = x_3
+ \end{align}
+\]
+\end{document}

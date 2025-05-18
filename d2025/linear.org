@@ -1,0 +1,69 @@
+#+AUTHOR: Serob Tigranyan
+#+TITLE: Linear Algebra
+#+LATEX_HEADER: \usepackage{mathptmx}  % Times font
+#+LATEX_HEADER: \usepackage{helvet}   % Helvetica font
+#+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault} % Sans-serif as default
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \usepackage{lmodern}
+#+LATEX_HEADER: \usepackage{amsmath}
+
+\newpage
+
+* Task 1
+Given the following basis vectors:
+\[
+e_1=(1,1,1)
+\]
+\[
+e_2=(1,1,2)
+\]
+\[
+e_3=(1,-1,1)
+\]
+
+And vector x:
+\[
+x=(6,9,14)
+\]
+
+Check if the basis vectors are linearly independent by placing each vector as a column in matrix and calculating the *rank*:
+#+BEGIN_EXPORT latex
+\[
+ A =
+ \begin{bmatrix}
+ 1 & 1 & 1 \\
+ 1 & 1 & -1 \\
+ 1 & 2 & 1
+ \end{bmatrix}
+\]
+#+END_EXPORT
+
+Calculate rank:
+\[
+\Delta_1 = 1 \cdot 1 \cdot 1 + 1 \cdot (-1) \cdot 1 + 1 \cdot 1 \cdot 2 - 1 \cdot 1 \cdot 1 - 1 \cdot 1 \cdot 1 - 1 \cdot (-1) \cdot 2 = 2
+\]
+\[
+rank(A) = 3
+\]
+
+Because the *rank* is 3, the same amount as the length of the vectors, this means that the basis vectors are linearly independent.
+
+$x$ expressed as a vector inside our basis:
+\[
+x = c_1 e_1 + c_2 e_2 + c_3 e_3
+\]
+
+#+BEGIN_EXPORT latex
+\[
+ \left\{
+ \begin{align}
+ c_1 + c_2 + c_3 = x_1 \\
+ c_1 + c_2 - c_3 = x_2 \\
+ c_1 + 2c_2 + c_3 = x_3
+ \end{align}
+\]
+#+END_EXPORT
+
+\[
+(c_1 + c_2 + c_3) - (c_1 + c_2 - c_3) = x_1 - x_2
+\]

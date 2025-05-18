@@ -1,0 +1,306 @@
+#+AUTHOR: Serob Tigranyan
+#+TITLE: Mathematical Analysis
+#+LATEX_HEADER: \usepackage{mathptmx}  % Times font
+#+LATEX_HEADER: \usepackage{helvet}   % Helvetica font
+#+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault} % Sans-serif as default
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \usepackage{lmodern}
+
+\newpage
+
+* Proof by Induction
+Prove the following statement via Math Induction:
+\[
+\frac{1}{1 \cdot 3 \cdot 5} + \frac{2}{3 \cdot 5 \cdot 7} + \frac{3}{5 \cdot 7 \cdot 9} + ... + \frac{n}{(2n-1)(2n+1)(2n+3)} = \frac{n(n+1)}{2(2n+1)(2n+3)}
+\]
+
+- Prove for \[ n=1 \]
+  1. Substitute $1$ for $n$:
+        \[
+        \frac{1}{(2 \cdot 1 - 1)(2 \cdot 1 + 1)(2 \cdot 1 + 3)} \stackrel{?}{=} \frac{1(1+1)}{2(2 \cdot 1 + 1)(2 \cdot 1 + 3)}
+        \]
+
+  2. Evaluate:
+        \[
+        \frac{1}{(1)(3)(5)} \stackrel{?}{=} \frac{2}{2(3)(5)}
+        \]
+
+  4. Evaluate:
+        \[
+        \frac{1}{15} \stackrel{?}{=} \frac{2}{30}
+        \]
+
+  5. Cancel $2$ and $30$ to get:
+        \[
+        \frac{1}{15} = \frac{1}{15}
+        \]
+
+- Prove for $n \stackrel{?}{=} k$:
+  1. Substitute $k$ for $n$:
+        \[
+        \frac{1}{1 \cdot 3 \cdot 5} + \frac{2}{3 \cdot 5 \cdot 7} + \frac{3}{5 \cdot 7 \cdot 9} + ... + \frac{k}{(2k-1)(2k+1)(2k+3)} = \frac{k(k+1)}{2(2k+1)(2k+3)}
+        \]
+
+- Prove for $k + 1$:
+  1. Substitute $k + 1$ for $k$:
+        \[
+        \frac{1}{1 \cdot 3 \cdot 5} + \frac{2}{3 \cdot 5 \cdot 7} + \frac{3}{5 \cdot 7 \cdot 9} + ... + \frac{k}{(2k-1)(2k+1)(2k+3)} +
+        \]
+        \[
+        +\frac{k+1}{[2(k+1)-1][2(k+1)+1][2(k+1)+3]} \stackrel{?}{=} \frac{k+1[(k+1)+1]}{2[2(k+1)+1][2(k+1)+3]}
+        \]
+
+  2. Substitute $n = k$ assertion.
+        \[
+        \frac{k(k+1)}{2(2k+1)(2k+3)} + \frac{k+1}{[2(k+1)-1][2(k+1)+1][2(k+1)+3]} \stackrel{?}{=}
+        \]
+        \[
+        \stackrel{?}{=} \frac{k+1[(k+1)+1]}{2[2(k+1)+1][2(k+1)+3]}
+        \]
+
+  3. Simplify:
+        \[
+        \frac{k(k+1)}{2(2k+1)(2k+3)} + \frac{k+1}{(2k+1)(2k+3)(2k+5)} \stackrel{?}{=}
+        \]
+        \[
+        \stackrel{?}{=} \frac{k+1(k+2)}{2(2k+3)(2k+5)}
+        \]
+
+  4. Factor:
+        \[
+        \frac{k+1}{(2k+1)(2k+3)} \cdot (\frac{k}{2}+\frac{1}{2k+5}) \stackrel{?}{=}
+        \]
+        \[
+        \stackrel{?}{=} \frac{k+1(k+2)}{2(2k+3)(2k+5)}
+        \]
+
+  5. Simplify:
+        \[
+        \frac{k+1}{(2k+1)(2k+3)} \cdot \frac{k(2k+5)+2}{2(2k+5)} \stackrel{?}{=}
+        \]
+        \[
+        \stackrel{?}{=} \frac{k+1(k+2)}{2(2k+3)(2k+5)}
+        \]
+
+  6. Open:
+        \[
+        \frac{k+1}{(2k+1)(2k+3)} \cdot \frac{2k^2+5k+2}{2(2k+5)} \stackrel{?}{=}
+        \]
+        \[
+        \stackrel{?}{=} \frac{k+1(k+2)}{2(2k+3)(2k+5)}
+        \]
+
+  7. Factor
+        \[
+        2k^2+5k+2
+        \]
+        1. Multiply coefficient ok $k^2$ to the constant.
+        \[
+        k^2+5k+4
+        \]
+        2. Find two numbers that add up to 5 and multiply to 4 which are 4 and 1, therefore:
+        \[
+        (k+1)(k+4)
+        \]
+        3. Add the coefficient back.
+        \[
+        (2k+1)(k+2)
+        \]
+
+  8.
+      \[
+      \frac{k+1(2k+1)(k+2)}{2(2k+1)(2k+3)(2k+5)} \stackrel{?}{=} \frac{k+1(k+2)}{2(2k+3)(2k+5)}
+      \]
+
+  9. Cancel $(2k + 1)$ to finally get:
+      \[
+      \frac{k+1(k+2)}{2(2k+3)(2k+5)} = \frac{k+1(k+2)}{2(2k+3)(2k+5)}
+      \]
+
+\newpage
+* Limit of a sequence
+Find the limit of the following sequence:
+\[
+\lim_{n \to \infty} n^2 \left( \sqrt{4 + \frac{3}{n^2}} - 2 \right)
+\]
+
+We can observe that the $n^2$ prevents us from just calculating the limits of each component individually therefore we must transform it in a way that will allows us to calculate the limtis of each component individually.
+First we will multiply by the conjugate of $\sqrt{4+\frac{3}{n^2}}-2$ to get:
+\[
+\lim_{n \to \infty}{n^2 \left( \frac{\sqrt{4 + \frac{3}{n^2}} - 2 \cdot  \sqrt{4 + \frac{3}{n^2}} + 2}{\sqrt{4 + \frac{3}{n^2}} + 2} \right)}
+\]
+
+We can observe that in the numerator we have the $a^2-b^2 = (a+b)(a-b)$ formula therefore we can utilize it to get rid of the square root:
+\[
+\lim_{n \to \infty}{n^2 \left( \frac{\sqrt{4 + \frac{3}{n^2}}^2 - 2^2}{\sqrt{4 + \frac{3}{n^2}} + 2} \right)} =
+\]
+\[
+= \lim_{n \to \infty}{n^2 \left( \frac{4 + \frac{3}{n^2} - 4}{\sqrt{4 + \frac{3}{n^2}} + 2} \right)}
+\]
+
+The fours cancel out:
+\[
+\lim_{n \to \infty}{n^2 \left( \frac{\frac{3}{n^2}}{\sqrt{4 + \frac{3}{n^2}} + 2} \right)}
+\]
+
+We then multiply the numerator with $n^2$:
+\[
+\lim_{n \to \infty}{\frac{\frac{3n^2}{n^2}}{\sqrt{4 + \frac{3}{n^2}} + 2}} =
+\]
+\[
+\lim_{n \to \infty}{\frac{3}{\sqrt{4 + \frac{3}{n^2}} + 2}}
+\]
+
+Now can just calculate the limit of each individual component:
+\[
+\frac{lim_{n \to \infty}(3)}{\sqrt{lim_{n \to \infty}(4) + lim_{n \to \infty}(\frac{3}{n^2}}) + lim_{n \to \infty}(2)}
+\]
+
+The limit of a constant is the constant itself thus we get:
+\[
+\frac{3}{\sqrt{4 + lim_{n \to \infty}(\frac{3}{n^2}}) + 2}
+\]
+
+We can observe that as $n$ grows to inifty, the fraction $\frac{3}{n^2}$ tries to reach $0$ therefore we can conclude that the limit of $\frac{3}{n^2}$ is $0$:
+\[
+\frac{3}{\sqrt{4 + 0} + 2}
+\]
+
+From this we find the limit of our sequence:
+\[
+\lim_{n \to \infty} n^2 \left( \sqrt{4 + \frac{3}{n^2}} - 2 \right) = \frac{3}{4}
+\]
+
+\newpage
+* Limit of a function
+The limit of the function is:
+\[
+\lim_{x \to \infty}{\sqrt{x} \left( \sqrt{x+3} - \sqrt{x-2} \right)} = \frac{a}{2}
+\]
+Find a.
+
+To evaluate the following limit we will first multiply it by the conjugate of $\sqrt{x+3}-\sqrt{x-2}$:
+\[
+\lim_{x \to \infty}{\sqrt{x} \left( \sqrt{x+3} - \sqrt{x-2} \cdot \frac{\sqrt{x+3}+\sqrt{x-2}}{\sqrt{x+3}+\sqrt{x-2}} \right)} = \frac{a}{2}
+\]
+
+We notice that in the numerator we have the $a^2-b^2=(a+b)(a-b)$ formula which we will utilise to get rid of the square roots:
+\[
+\lim_{x \to \infty}{\sqrt{x} \left( \frac{(x+3)-(x-2)}{\sqrt{x+3}+\sqrt{x-2}} \right)} = \frac{a}{2}
+\]
+
+Opening the parenthesis will yield:
+\[
+\lim_{x \to \infty}{\sqrt{x} \left( \frac{x+3-x+2}{\sqrt{x+3}+\sqrt{x-2}} \right)} =
+\]
+\[
+\lim_{x \to \infty}{\sqrt{x} \left( \frac{5}{\sqrt{x+3}+\sqrt{x-2}} \right)} = \frac{a}{2}
+\]
+
+Now we will multiply the numerator with $\sqrt{x}$:
+\[
+\lim_{x \to \infty}{\frac{5 \sqrt{x}}{\sqrt{x+3}+\sqrt{x-2}}} = \frac{a}{2}
+\]
+
+To get rid of the 5 $\sqrt{x}$ we will factor out $\sqrt{x}$ from the denomerator by first facotring $x$ itself inside the square roots:
+\[
+\lim_{x \to \infty}{\frac{5 \sqrt{x}}{\sqrt{x(1+\frac{3}{x})}+\sqrt{x(1-\frac{x}{2})}}} =
+\]
+\[
+\lim_{x \to \infty}{\frac{5 \sqrt{x}}{\sqrt{x} \cdot \sqrt{1+\frac{3}{x}}+\sqrt{x} \cdot \sqrt{1-\frac{x}{2}}}} =
+\]
+\[
+= \frac{a}{2}
+\]
+
+Now we simply factor out $\sqrt{x}$ which will yield:
+\[
+\lim_{x \to \infty}{\frac{5 \sqrt{x}}{\sqrt{x}(\sqrt{1+\frac{3}{x}}+\sqrt{1-\frac{x}{2}})}} = \frac{a}{2}
+\]
+
+This allows us to cancel $\sqrt{x}$ both in the numerator and the denomerator:
+\[
+\lim_{x \to \infty}{\frac{5}{\sqrt{1+\frac{3}{x}}+\sqrt{1-\frac{x}{2}}}} = \frac{a}{2}
+\]
+
+And our answer is $5$.
+
+
+\newpage
+* Derivative of a function
+Find the derivative of:
+\[
+f(x)=ln^4(x+sin(2x))
+\]
+
+Differentiating certain functions with limts produce certain patterns which have been compiled into rules to make differentation easier and if you were to manually differentiate with limits, you would see that they produce the exact same result if you were to instead just apply the rules themselves.
+We will use these rules to differentiate the the given function.
+
+Here we have a function gunction of $x$ which is a complex function.
+To find the derivative of a complex function we apply the rule of /Fog/ which states:
+\[
+f'(g(x))=f'(x) \cdot g'(x)
+\]
+
+In our case $f(x)$ would be the exponent and $g(x)$ would be the logarithmic expression.
+
+Therefore:
+\[
+f'(x)=(ln^4(x+sin(2x)))' \cdot ln'(x+sin(2x))
+\]
+
+To find the derivative of the first part of the expression we will apply the Power Rule which states:
+\[
+(x^\alpha)' = \alpha \cdot x^{\alpha - 1}
+\]
+
+Therefore:
+\[
+f'(x)=4ln^3(x+sin(2x)) \cdot ln'(x+sin(2x))
+\]
+
+Now we have to differentiate the logarithmic expression.
+We can observe that the logarithmic expression also happens to be a complex function therefore we will apply the Fog rule once again:
+\[
+f'(x)=4ln^3(x+sin(2x)) \cdot ln'(x+sin(2x)) \cdot (x+sin(2x))'
+\]
+
+Applying the rule of natural logarithm we get:
+\[
+f'(x)=4ln^3(x+sin(2x)) \cdot \frac{1}{x+sin(2x)} \cdot (x+sin(2x))'
+\]
+
+To differentiate the last part of the expression, we will yet again employ the rule of /Fog/:
+\[
+(f(x) + g(x))' = f'(x) + g'(x)
+\]
+
+Therefore:
+\[
+f'(x)=4ln^3(x+sin(2x)) \cdot \frac{1}{x+sin(2x)} \cdot x'+sin'(2x)
+\]
+
+The derivative of $x$ is simply $1$ and this is because $x=x^1$ to which applying the power rule will infact yield $1$.
+\[
+(x^1)' = 1 \cdot x^{1 - 1} = 1
+\]
+
+Therefore:
+\[
+f'(x)=4ln^3(x+sin(2x)) \cdot \frac{1}{x+sin(2x)} \cdot 1+sin'(2x)
+\]
+
+$sin(2x)$ also happens to be a complex function, applying the rule of /Fog/ will yield:
+\[
+f'(x)=4ln^3(x+sin(2x)) \cdot \frac{1}{x+sin(2x)} \cdot 1+sin'(2x) \cdot (2x)'
+\]
+
+The derivative of $2x$ is simply $1$ because again, the power rule, and the derivative of $sin$ is $cos$ and this gives us:
+\[
+f'(x)=4ln^3(x+sin(2x)) \cdot \frac{1+2cos(2x)}{x+sin(2x)}
+\]
+
+Which finally becomes:
+\[
+f'(x)=\frac{4ln^3(x+sin(2x)) \cdot 1+2cos(2x)}{x+sin(2x)}
+\]
