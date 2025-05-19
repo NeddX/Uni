@@ -1,5 +1,5 @@
 #+AUTHOR: Serob Tigranyan
-#+TITLE: Matematiks
+#+TITLE: Matematical Analysis
 #+LATEX_HEADER: \usepackage{mathptmx}  % Times font
 #+LATEX_HEADER: \usepackage{helvet}   % Helvetica font
 #+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault} % Sans-serif as default
@@ -136,6 +136,7 @@ Decreasing: \left( -\infty ; \frac{3 - \sqrt{23}}{2} \right) \cup \left( \frac{3
 
 ** Local Extrema
 To find the local extrema of the function we take the interval from before and determine whether the function at the critical point is a minimum or a maximum.
+#+ATTR_LATEX: :width 0.6\textwidth
 [[file:./skarmbild.png]]
 
 If the function is decreasing before critical point $x$ and increasing afterwards then its a local minimum, otherwise its a local maximum.
@@ -183,7 +184,7 @@ f''\left(\frac{3-\sqrt{23}}{2}\right) \approx 0.41
 
 \newpage
 Therefore:
-#+ATTR_LATEX: :width 0.3\textwidth
+#+ATTR_LATEX: :width 0.6\textwidth
 [[file:./skarmbild2.png]]
 
 To find the Inflection Points we zero the second derivative and solve:
