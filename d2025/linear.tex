@@ -1,4 +1,4 @@
-% Created 2025-05-21 Wed 22:41
+% Created 2025-05-22 Thu 22:22
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -35,7 +35,7 @@
 
 \newpage
 \section{Task 1}
-\label{sec:org8a184da}
+\label{sec:org1641612}
 Given the following basis vectors:
 \[
 e_1=(1,1,3)
@@ -52,7 +52,7 @@ And vector \(x\):
 x=(5,4,6)
 \]
 \subsection{Linear Independence}
-\label{sec:org41480b3}
+\label{sec:org3e4815c}
 We need to check if the given basis vectors are valid:
 \[
 A =
@@ -73,7 +73,7 @@ Since our determinant is non-zero, then we have a full rank which is 3 which fur
 rank(A) = 3
 \]
 \subsection{Vector expressed in given basis}
-\label{sec:org1d42f87}
+\label{sec:orgef50213}
 We need to express vector \(x\) in our basis \(e_1\), \(e_2\), \(e_3\).
 \[
 x=\lambda_1 e_1 + \lambda_2 e_2 + \lambda_3 e_3
@@ -138,7 +138,7 @@ x_e = (2,4,-1)
 
 \newpage
 \section{Task 2}
-\label{sec:org3879951}
+\label{sec:org00463ae}
 Given the vectors \(a_1\) and \(a_2\) we need to find if they're orthogonal and if so, then find their orthogonal basis vectors:
 \[
 a_1 = (4,4,1,-1)
@@ -147,7 +147,7 @@ a_1 = (4,4,1,-1)
 a_2 = (1,-1,1,1)
 \]
 \subsection{Orthogonality}
-\label{sec:orgafa7d12}
+\label{sec:orgcaf89d8}
 To check if these two are orthogonal we perform scalar multiplication on both of them:
 \[
 (a_1 \cdot a_2) = 4 - 4 + 1 - 1 = 0 \Rightarrow a_1 \perp a_2
@@ -155,7 +155,7 @@ To check if these two are orthogonal we perform scalar multiplication on both of
 
 Our vectors are indeed orthogonal, now we need to find their orthogonal basis vectors.
 \subsubsection{Orthogonal Basis Vectors}
-\label{sec:org3b7daa2}
+\label{sec:orgf2b69f0}
 To find the orthogonal basis vectors we pick arbitrary vector:
 \[
 \gamma=(x,y,z,w)
@@ -370,31 +370,31 @@ x \\ y \\ z
 D(A) = -\frac{49}{4}
 \]
 \[
-x = D \left(
+x = \left|
 \begin{bmatrix}
 1 & 4 & 1 \\
 -1 & -1 & 1 \\
 0 & \frac{3}{8} & 1
 \end{bmatrix}
-\right) = \frac{9}{4}
+\right| = \frac{9}{4}
 \]
 \[
-y = D \left(
+y = \left|
 \begin{bmatrix}
 4 & 1 & 1 \\
 1 & -1 & 1 \\
 -\frac{5}{8} & 0 & 1
 \end{bmatrix}
-\right) = -\frac{25}{4}
+\right| = -\frac{25}{4}
 \]
 \[
-z = D \left(
+z = \left|
 \begin{bmatrix}
 4 & 4 & 1 \\
 1 & -1 & -1 \\
 -\frac{5}{8} & \frac{3}{8} & 0
 \end{bmatrix}
-\right) = \frac{15}{4}
+\right| = \frac{15}{4}
 \]
 
 Therefore we get our vector $\beta$ which is our fourth basis vector $a_4$:
@@ -414,5 +414,231 @@ a_3 = (-\frac{5}{8};\frac{3}{8};1;0)
 \]
 \[
 a_4 = (-\frac{9}{49};\frac{25}{49};-\frac{15}{49};1) 
+\]
+\section{Task 3}
+\label{sec:org373321a}
+Given the basis vectors:
+\[
+\left\{ a_1 = (2,3,5); a_2 = (0,1,2); a_3 = (1,0,0) \right\}
+\]
+
+We need to find the matrix that transforms these basis vectors to:
+\[
+\left\{ e_1, e_2, e_3 \right\} \Rightarrow \left\{ (1,1,3); (1,1,0); (1,2,0) \right\}
+\]
+
+First we will form a linear system of equations:
+\[
+\left\{
+\begin{aligned}
+e_1 = x_1 a_1 + x_2 a_2 + x_3 a_3 \\
+e_2 = y_1 a_1 + y_2 a_2 + y_3 a_3 \\
+e_3 = z_1 a_1 + z_2 a_2 + z_3 a_3
+\end{aligned}
+\]
+
+Now we solve each equations separately by forming a yet another system of equations for each entry of $e_1$ and solve them with Cramer's rule.\\
+I will skip Cramer's parts because we already know it from the first semester. \\
+
+Solve for $e_1$:
+\[
+(1,1,3)=x_1(2,3,5)+x_2(0,1,2)+x_3(1,0,0)
+\Rightarrow
+(1,1,3)=(2x_1+x_3;3x_1+x_2;5x_1+2x_2)
+\]
+\[
+\left\{
+\begin{aligned}
+2x_1 + x_3 = 1 \\
+3x_1 + x_2 = 1 \\
+5x_1 + 2x_2 = 3
+\end{aligned}
+\Rightarrow
+\left\{
+\begin{aligned}
+x_1 = -1 \\
+x_2 = 4 \\
+x_3 = 3
+\end{aligned}
+\]
+
+Solve for $e_2$:
+\[
+(1,1,0)=(2x_1+x_3;3x_1+x_2;5x_1+2x_2)
+\]
+\[
+\left\{
+\begin{aligned}
+2x_1+x_3=1 \\
+3x_1+x_2=1 \\
+5x_1+2x_2=0
+\end{aligned}
+\Rightarrow
+\left\{
+\begin{aligned}
+x_1 = 2 \\
+x_2 = -5 \\
+x_3 = -3
+\end{aligned}
+\]
+
+Solve for $e_3$:
+\[
+(1,2,0)=(2x_1+x_3;3x_1+x_2;5x_1+2x_2)
+\]
+\[
+\left\{
+\begin{aligned}
+2x_1+x_3=1 \\
+3x_1+x_2=2 \\
+5x_1+2x_2=0
+\end{aligned}
+\Rightarrow
+\left\{
+\begin{aligned}
+x_1 = 4 \\
+x_2 = -10 \\
+x_3 = -7
+\end{aligned}
+\]
+
+From this we get our final system of equations:
+\[
+\left\{
+\begin{aligned}
+e_1 = -a_1 + 4a_2 + 3a_3 \\
+e_2 = 2a_1 - 5a_2 - 3a_3 \\
+e_3 = 4a_1 - 10a_2 - 7a_3 
+\end{aligned}
+\]
+\[
+A =
+\begin{bmatrix}
+-1 & 4 & 3 \\
+2 & -5 & -3 \\
+4 & -10 & -7
+\end{bmatrix}
+\]
+\section{Task 4}
+\label{sec:orga08d43f}
+We are given matrix \(A\) to find the Transition matrix \(\alpha\):
+Find the Transition matrix $\alpha$:
+\[
+a \rightarrow
+A =
+\begin{bmatrix}
+1 & -3 & 3 \\
+-2 & -6 & 13 \\
+-1 & -4 & 8
+\end{bmatrix}
+\]
+\[
+\gamma_\alpha (x) = \left| x \cdot I - A \right| \Rightarrow
+\left|
+\begin{bmatrix}
+x & 0 & 0 \\
+0 & x & 0 \\
+0 & 0 & x
+\end{bmatrix}
+-
+\begin{bmatrix}
+1 & -3 & 3 \\
+-2 & -6 & 13 \\
+-1 & -4 & 8
+\end{bmatrix}
+\right|
+= 
+x^3 - 3x^2 + 3x - 1 = (x-1)^3
+\]
+\[
+(x-1)^3 = 0
+\]
+\[
+x = 3
+\]
+\[
+\alpha(a) = \lambda a
+\]
+\[
+A
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & -3 & 3 \\
+-2 & -6 & 13 \\
+-1 & -4 & 8
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix}
+= 
+\begin{bmatrix}
+x_1 - 3x_2 + 3x_3 \\
+-2x_1 - 6x_2 + 13x_3 \\
+-x_3 - 4x_2 + 8x_3
+\end{bmatrix}
+\]
+
+Now we form a linear system of equations to solve:
+\[
+\left\{
+\begin{aligned}
+-3x_2 + 3x_3 = 0 \\
+-2x_1 - 7x_2 + 13x_3 = 0 \\
+-x_1 - 4x_2 + 7x_3 = 0
+\end{aligned}
+\]
+
+Now we form a matrix to solve the system:
+\[
+\begin{bmatrix}
+0 & -3 & 3 \\
+-2 & -7 & 13 \\
+-1 & -4 & 7
+\end{bmatrix}
+\]
+\[
+\Delta_1 = -3 \neq 0
+\]
+\[
+\Delta_2 = 
+\begin{bmatrix}
+0 & -3 \\
+-2 & -7
+\end{bmatrix}
+= 
+-6 \neq 0
+\]
+\[
+\begin{bmatrix}
+0 & -3 & 3 \\
+-2 & -7 & 13 \\
+-1 & -4 & 7
+\end{bmatrix}
+= 0
+\Rightarrow
+rank(A) = 0
+\]
+
+Because the rank is 3, we ignore the third row in the system and solve for the first two:
+\[
+\left\{
+\begin{aligned}
+-3x_2 = -3x_3 \\
+-2x_1 -7x_2 = -13x_3
+\end{aligned}
+=
+\left\{
+\begin{aligned}
+x_1 = 3 \\
+x_2 = 1
+\end{aligned}
+\]
+
+From this we get our vector:
+\[
+(3,1,1)
 \]
 \end{document}
